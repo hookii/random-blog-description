@@ -65,14 +65,14 @@ function random_description_activation(){
 	}
 }
 
-add_action('admin_menu',random_description_admin_menu);
-add_filter('plugin_row_meta',random_description_meta,10,2);
-register_activation_hook(__FILE__, random_description_activation);
-register_deactivation_hook(__FILE__,random_description_deactivation);
+add_action('admin_menu','random_description_admin_menu');
+add_filter('plugin_row_meta','random_description_meta',10,2);
+register_activation_hook(__FILE__, 'random_description_activation');
+register_deactivation_hook(__FILE__,'random_description_deactivation');
 
 if(is_admin()){
 }elseif(get_option('random_description_format')){
-	add_filter('pre_option_blogdescription',random_description);
+	add_filter('pre_option_blogdescription','random_description');
 }else{
-	add_action('wp_footer',random_description_footer);
+	add_action('wp_footer','random_description_footer');
 }
